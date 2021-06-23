@@ -19,12 +19,9 @@ include '../connection.php';
                 $con->query($sql);
             
                 if ($_POST['access'] == "Customer") {
-                    $sql = "INSERT INTO `customer`(`customer_name`) VALUES ('$fullname')";
-                    $con->query($sql);
-                    header("Location: ../admin/home.php");
-                }
-                else{
-                    echo "Error: ". $con->error;
+                     $sql = "INSERT INTO `customer`(`customer_name`) VALUES ('$fullname')";
+                      $con->query($sql);
+                     header("Location: ../admin/home.php");
                 }
             }
             
@@ -35,51 +32,230 @@ include '../connection.php';
 <?php
     include '../admin/header.php';
 ?>
-<div class="pos-register">
-        <form action="" class="form" method="post">
-                <h2>Sign up</h2>
-                <div class="input-group1">
-                <label for="firstname" >First Name: </label>
-                <input type="text" name="fname" id="fname1" class="form-reg" required>  
-                </div>
-                <div class="input-group1">
-                <label for="lastname"> Last Name: </label>
-                <input type="text" name="lname" id="lname1" class="form-reg" required>
-                </div>
-                <div class="input-group1">
-                <label for="uname"> Username: </label>
-                <input type="text" name="uname" id="uname1" class="form-reg" required>
-                </div>
-                <div class="input-group1">
-                <label for="pword"> Password: </label>
-                <input type="password" name="pword1" id="password1" class="form-reg" required>
-                </div>
-                <div class="input-group1">
-                <label for="contact"> Contact: </label>
-                <input type="int" name="ctct" id="contact1" class="form-reg" required>
-                </div>
-                <div class="input-group1">
-                    <label for="gender">Gender:</label>
-                    <select name="gender" id="gender" required >
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>         
-                </div>
-                <div class="input-group1">
-                    <label for="access">Access:</label>
-                    <select name="access" id="access" required >
-                        <option value="Admin">Admin</option>
-                        <option value="Customer">Customer</option>
-                        <option value="Employee">Employee</option>
-                    </select>         
-                </div>
-                <div class="input-group1">
-                <label for="email"> Email: </label>
-                <input type="text" name="email1" id="email2" class="form-reg" required>
-                </div>
-                <input type="submit" name="register" class="register-btn">
-        </form>
+<style>
+    .wrapper1{
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  margin: 20px auto;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+  padding: 30px;
+}
+
+.wrapper1 .title{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: greenyellow;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.wrapper1 .form{
+  width: 100%;
+}
+
+.wrapper1 .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper1 .form .inputfield label{
+   width: 200px;
+   color: green;
+   margin-right: 10px;
+  font-size: 14px;
+}
+
+.wrapper1 .form .inputfield .input,
+.wrapper1 .form .inputfield .textarea{
+  width: 100%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.wrapper1 .form .inputfield .textarea{
+  width: 100%;
+  height: 125px;
+  resize: none;
+}
+
+.wrapper1 .form .inputfield .custom_select{
+  position: relative;
+  width: 100%;
+  height: 37px;
+}
+
+.wrapper1 .form .inputfield .custom_select:before{
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  border: 8px solid;
+  border-color: #d5dbd9 transparent transparent transparent;
+  pointer-events: none;
+}
+
+.wrapper1 .form .inputfield .custom_select select{
+  -webkit-appearance: none;
+  -moz-appearance:   none;
+  appearance:        none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #d5dbd9;
+  border-radius: 3px;
+}
+
+
+.wrapper1 .form .inputfield .input:focus,
+.wrapper1 .form .inputfield .textarea:focus,
+.wrapper1 .form .inputfield .custom_select select:focus{
+  border: 1px solid #fec107;
+}
+
+.wrapper1 .form .inputfield p{
+   font-size: 14px;
+   color: #757575;
+}
+.wrapper1 .form .inputfield .check{
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.wrapper1 .form .inputfield .check input[type="checkbox"]{
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.wrapper1 .form .inputfield .check .checkmark{
+  width: 15px;
+  height: 15px;
+  border: 1px solid #fec107;
+  display: block;
+  position: relative;
+}
+.wrapper1 .form .inputfield .check .checkmark:before{
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 5px;
+  height: 2px;
+  border: 2px solid;
+  border-color: transparent transparent #fff #fff;
+  transform: rotate(-45deg);
+  display: none;
+}
+.wrapper1 .form .inputfield .check input[type="checkbox"]:checked ~ .checkmark{
+  background: #fec107;
+}
+
+.wrapper1 .form .inputfield .check input[type="checkbox"]:checked ~ .checkmark:before{
+  display: block;
+}
+
+.wrapper1 .form .inputfield .btn{
+  width: 100%;
+   padding: 8px 10px;
+  font-size: 15px; 
+  border: 0px;
+  background:  greenyellow;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+}
+
+.wrapper1 .form .inputfield .btn:hover{
+  background: green;
+}
+
+.wrapper1 .form .inputfield:last-child{
+  margin-bottom: 0;
+}
+
+@media (max-width:420px) {
+  .wrapper1 .form .inputfield{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper1 .form .inputfield label{
+    margin-bottom: 5px;
+  }
+  .wrapper1 .form .inputfield.terms{
+    flex-direction: row;
+  }
+}
+
+</style>
+<div class="wrapper1">
+    <form action="" class="form" method="POST">
+    <div class="title">
+      Registration Form
     </div>
+    <div class="form">
+       <div class="inputfield">
+          <label>First Name</label>
+          <input type="text" class="input" name="fname">
+       </div>  
+        <div class="inputfield">
+          <label>Last Name</label>
+          <input type="text" class="input" name="lname">
+       </div> 
+       <div class="inputfield">
+          <label>Username</label>
+          <input type="text" class="input" name="uname">
+       </div>   
+       <div class="inputfield">
+          <label>Password</label>
+          <input type="password" class="input" name="pword1">
+       </div>  
+        <div class="inputfield">
+          <label>Gender</label>
+          <div class="custom_select">
+            <select name="gender">
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+       </div> 
+       <div class="inputfield">
+          <label>Access</label>
+          <div class="custom_select">
+            <select name="access">
+              <option value="">Select</option>
+              <option value="male">Admin</option>
+              <option value="female">Employee</option>
+            </select>
+          </div>
+       </div> 
+        <div class="inputfield">
+          <label>Email Address :</label>
+          <input type="text" class="input"  name="email1">
+       </div> 
+      <div class="inputfield">
+          <label>Contact Number:</label>
+          <input type="text" class="input" name="ctct">
+       </div> 
+      <div class="inputfield">
+        <input type="submit" value="Register" class="btn" name="register">
+      </div>
+    </div>
+</div>
+</form>
 <?php
     include '../admin/footer.php';
 ?>

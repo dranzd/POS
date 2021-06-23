@@ -16,6 +16,7 @@
         if($total>0){
             $_SESSION['UserLogin'] = $row['username'];
             $_SESSION['Access'] = $row['access'];
+            $_SESSION['id'] = $row['id'];
              header("Location: admin/home.php");
         }
         else{
@@ -33,78 +34,64 @@
     <title>POS Login</title>
     <style>
         *{
-            margin:0;
-            padding: 0;
-            box-sizing: border-box;
+          padding:0;
+          margin:0;
+          font-family: sans-serif;
         }
         body{
-            min-height: 100vh;
-            background: white;
-            display: flex;
-            font-family: Arial, Helvetica, sans-serif;
+          background: url('images/background.jpg') no-repeat ;
+          background-size: cover;
         }
-        .pos-login{
-            margin: auto;
-            width: 500px;
-            max-width: 90%;
+        .login-form{
+          width:350px;
+          top:50%;
+          left:50%;
+          transform: translate(-50% , -50%);
+          position: absolute;
+          color: #fff;
         }
-        .pos-login form{
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0,.3);
+        .login-form h2{
+          font-size: 40px;
+          text-align: center;
+          text-transform: uppercase;
+          margin: 40px 0;
+          color: greenyellow;
         }
-        .pos-login form h2{
-            text-align: center;
-            margin-bottom: 24px;
-            color: black;
+        .login-form label{
+          font-size: 20px;
+          margin: 15px 0;
+          color: green;
         }
-        .pos-login form .form-control{
-            width: 100%;
-            height: 40px;
-            background: white;
-            border-radius: 4px;
-            border: 1px solid silver;
-            margin: 10px 0 18px 0;
-            padding: 0 10px;
+        .login-form input{
+          font-size: 16px;
+          width: 80%;
+          padding: 15px 10px;
+          border: 0;
+          outline: none;
+          border-radius: 5px;
         }
-        .pos-login form .submit-btn{
-            margin-left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 34px;
-            border:none;
-            outline: none;
-            background: blue;
-            cursor: pointer;
-            font-size: 16px;
-            text-transform: uppercase;
-            color: white;
-            border-radius: 4px;
-            transition: .3s;
-        }
-        .pos-login form .submit-btn:hover{
-            opacity: .8;
+        .login-form button{
+          font-size: 18px;
+          font-weight: bold;
+          margin:20px 0;
+          padding:10px 15px;
+          width:50%;
+          border-radius: 5px;
+          border: 0;
+          color: green;
         }
     </style>
 </head>
 <body >
-    <div class="pos-login">
-        <form action="" class="form" method="post">
-            <img src="" alt="">
-            <h2>Login</h2>
-                <div class="input-group">
-                <label for="uname">Username: </label>
-                <input type="text" name="username" placeholder="Enter Username" class="form-control" required>   
-                </div>
-                <div class="input-group">
-                    <label for="pass">Password: </label>
-                    <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
-                </div>
-                <input type="submit" name="login" class="submit-btn" value="Login">
-        </form>
+    <div class="login-form">
+      <h2>Login</h2>
+      <form action="#" method="post">
+      <label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+           <label for="password">Password</label>
+              <input type="password" name="password" id="password" required>            
+      <button type="submit" name="login" class="submit-btn">Login</button>
+    </form>
     </div>
 </body>
 </html>

@@ -1,73 +1,47 @@
 <?php
     include '../connection.php'
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POS System</title>
-    <style>
-        body {
-    background: #e7f1ff;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-.main_container {
-    margin-left: 10px;
-    width: calc(95% - 10px);
-    transition: all 0.3s ease;
-}
-.wrapper {
-    display: flex;
-    width: 100%;
-}
-.navbar .hamburger:hover {
-    opacity: 0.7;
-}
-        .navbar {
-    background: #fff;
-    height: 50px;
-    width: 103%;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-}
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="index.php" class="navbar-brand">
+            <h3 class="px-5">
+                <i class="fas fa-shopping-basket"></i> POS System
+            </h3>
+        </a>
+        <button class="navbar-toggler"
+            type="button"
+                data-toggle="collapse"
+                data-target = "#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-.navbar .hamburger {
-    font-size: 25px;
-    cursor: pointer;
-    margin-right: 20px;
-    color: #5558c9;
-    display: none;
-}
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="mr-auto"></div>
+            <div class="navbar-nav">
+                <a href="cart.php" class="nav-item nav-link active">
+                    <h5 class="px-5 cart">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <?php
 
-.navbar .logo a {
-    font-family: 'Trade Winds';
-    color: #5558c9;
-    font-size: 20px;
-}
+                        if (isset($_SESSION['cart'])){
+                            $count = count($_SESSION['cart']);
+                            echo "<span id=\"cart_count\" class=\"text-warning bg-light\">$count</span>";
+                        }else{
+                            echo "<span id=\"cart_count\" class=\"text-warning bg-light\">0</span>";
+                        }
 
-.content {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-}
-    </style>
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
-</head>
-<body>
-<div class="main_container">
-      <div class="navbar">
-         <div class="hamburger">
-         </div>
-         <div class="logo">
-           <a href="../user/index.php">POS System</a>
+                        ?>
+                    <a href="../logout.php"><div class="icon">
+                        <i class="fas fa-sign-out-alt"></i> Logout</div>
+                </a>
+                    </h5>
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="content">
-         <div id="page-wrapper">
-            <div class="container-fluid">
+
+    </nav>
+</header>
