@@ -1,18 +1,20 @@
 <?php
+    $dbInfo = require_once '../config/db.php';
+
     // Database connection info
-    $dbDetails = array(
-        'host' => 'localhost',
-        'user' => 'root',
-        'pass' => '',
-        'db'   => 'pos_system',
-        'port' => '3307'
-    );
+    $dbDetails = [
+        'host' => $dbInfo['host'],
+        'user' => $dbInfo['username'],
+        'pass' => $dbInfo['password'],
+        'db'   => $dbInfo['database'],
+        'port' => $dbInfo['port'],
+    ];
 
     // DB table to use
         $table = 'item';
     // Table's primary key
         $primaryKey = 'itemid';
-        
+
         $columns = array(
 
 
@@ -21,7 +23,7 @@
                 'dt'  => 0,
                 'field' => 'Qty',
                 'formatter' => function($a1, $row ) {
-                    
+
                     return '<a href="#">' . $a1 . '</a>';
                 }
             ),
@@ -30,7 +32,7 @@
                 'dt'  => 1,
                 'field' => 'Unit',
                 'formatter' => function($a2, $row ) {
-                    
+
                     return '<a href="#">' . $a2 . '</a>';
                 }
             ),
@@ -41,7 +43,7 @@
                 'dt'  => 2,
                 'field' => 'Description',
                 'formatter' => function($a3, $row ) {
-                    
+
                     return '<a href="#">' . $a3 . '</a>';
                 }
             ),
@@ -51,7 +53,7 @@
                 'dt'  => 3,
                 'field' => 'SerialNumber',
                 'formatter' => function($a4, $row ) {
-                    
+
                     return '<a href="#">' . $a4 . '</a>';
                 }
             ),
@@ -61,7 +63,7 @@
                 'dt'  => 4,
                 'field' => 'ModelNumber',
                 'formatter' => function($a5, $row ) {
-                    
+
                     return '<a href="#">' . $a5 . '</a>';
                 }
             ),
@@ -71,7 +73,7 @@
                 'dt'  => 5,
                 'field' => 'D_P',
                 'formatter' => function($a6, $row ) {
-                    
+
                     return '<a href="#">' . $a6 . '</a>';
                 }
             ),
@@ -81,7 +83,7 @@
                 'dt'  => 6,
                 'field' => 'Remarks',
                 'formatter' => function($a6, $row ) {
-                    
+
                     return '<a href="#">' . $a6 . '</a>';
                 }
             ),
@@ -91,7 +93,7 @@
                 'dt'  => 7,
                 'field' => 'category',
                 'formatter' => function($a7, $row ) {
-                    
+
                     return '<a href="#">' . $a7 . '</a>';
                 }
             ),
